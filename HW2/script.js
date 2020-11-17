@@ -62,10 +62,26 @@ else {console.log("you've entered NOT right-angled triangle");}
 //T7
 let todayDate = new Date();
 let currentHour = parseInt(todayDate.getHours());
-
+//lets try with IF
 if((currentHour>= 5)&&(currentHour< 11)){console.log("Доброго ранку!"); }
 else if((currentHour>= 11)&&(currentHour< 17)){console.log("Доброго дня!");} 
     else if((currentHour>= 17)&&(currentHour< 23)){console.log("Доброго вечора!");}
         else {console.log("Доброї ночі!");}
 
+        //now lets try with Switch
+switch(true) {  
+    case((currentHour>= 5)&&(currentHour< 11)):   
+    console.log("Доброго ранку!");  
+    break;  
 
+    case ((currentHour>= 11)&&(currentHour< 17)):    
+    console.log("Доброго дня!");  
+    break; 
+    
+    case ((currentHour>= 17)&&(currentHour< 23)):    
+    console.log("Доброго вечора!");   
+    break; 
+
+    default:   
+    console.log("Доброї ночі!");  
+} 
