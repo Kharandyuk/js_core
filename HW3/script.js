@@ -62,6 +62,7 @@ function findMin(){
     }
  return result;
 }
+
 console.log(findMin(12, 14, 4, -4, 0.2));
 console.log(findMin("12", 14, 4, -4, "-40"));
 
@@ -85,15 +86,16 @@ console.log(findUnique([1, 2, 3, 5, 11]));
 
 //T7
 function lastElem(arr, x){
-
     let resultArray = new Array(); 
+
     if (x>arr.length){
         x = arr.length;
     }
+
     if (x == undefined){
         resultArray = arr[arr.length -1];
     }else{
-        for(let i=0; i<x; i++ ){
+        for (let i=0; i<x; i++ ){
             resultArray[i]= arr[arr.length -x +i]        }
 
     }
