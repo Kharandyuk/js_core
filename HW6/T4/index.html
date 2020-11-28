@@ -1,0 +1,59 @@
+
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DOM</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    
+    
+    
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p id="msg"></p>
+        </div>
+     </div>
+    
+    <p>
+        <button id="myBtn" onclick="doSmthFirst()">Show1</button>
+    </p>
+    <p>
+        <button id="myBtn" onclick="doSmthSecond()">Show2</button>
+    </p>
+    <ul id="list">
+        <li >1</li>
+        <li >2</li>
+        <li >3</li>
+        <li >4</li>
+        <li >5</li>
+      
+    </ul>
+        
+    <script>
+     
+        var modal = document.getElementById("myModal");
+        var span = document.getElementsByClassName("close")[0];
+        span.onclick = function() {
+        modal.style.display = "none";
+        }
+    
+        window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+        }
+          
+    </script>
+    <script src="script.js"></script>
+</body>
+
+</html>
