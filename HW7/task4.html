@@ -1,0 +1,33 @@
+
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>seventh task</title>
+    
+</head>
+
+<body>
+    <select id="mySelect">
+        <option>Peter</option>
+        <option>John</option>
+        <option>Alise</option>
+        <option>Alex</option>
+        <option>Iren</option>
+    </select> 
+    <button id="myBtn1">Choose and Delete</button>
+<script>
+    function removeElement () {
+       let select =  document.getElementById('mySelect');
+       let value = select.selectedIndex;
+       select.removeChild(select[value]);
+    }
+    let btn1 = document.getElementById("myBtn1");
+         btn1.addEventListener("click",removeElement);
+</script> 
+</body>
+
+</html>

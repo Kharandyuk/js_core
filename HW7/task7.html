@@ -1,0 +1,71 @@
+
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>seventh task</title>
+    
+</head>
+
+<body>
+    <select name="country" id="country">
+        <option value="ger">Germany</option>
+        <option value="usa">USA</option>
+        <option value="ukr">Ukraine</option>
+    </select>
+                        
+    <select name="cities" id="cities"></select>
+    <p></p>
+    
+    <script>
+       let countrySelect =  document.getElementById('country');
+       let citySelect =  document.getElementById('cities');
+       let _p = document.querySelector('p');
+
+       function setCities() {
+            let countryValue = countrySelect[countrySelect.selectedIndex].text;
+            citySelect.innerHTML = "";
+          switch(countryValue)  {
+            case "USA" :
+                citySelect.insertAdjacentHTML('beforeend', `
+                             <option value="NY">New York</option>
+                             <option value="PY">Philadelphia</option>
+                             <option value="WT">Washington</option>
+                            `); 
+            break;
+            case "Ukraine" :
+                citySelect.insertAdjacentHTML('beforeend', `
+                             <option value="LV">Lviv</option>
+                             <option value="KV">Kyiv</option>
+                             <option value="KH">Kharkiv</option>
+                            `); 
+            break;
+            case "Germany" :
+                citySelect.insertAdjacentHTML('beforeend', `
+                             <option value="BL">Berlin</option>
+                             <option value="FT">Frankfurt</option>
+                             <option value="MN">Munich</option>
+                            `);  
+            break;
+            default: console.log("Default");
+          }
+          _p.innerHTML = countrySelect[countrySelect.selectedIndex].text + ", " + citySelect[citySelect.selectedIndex].text;  
+          console.log(citySelect[citySelect.selectedIndex].text);
+       }
+
+       function displayInfo() {
+            _p.innerHTML = countrySelect[countrySelect.selectedIndex].text + ", " + citySelect[citySelect.selectedIndex].text;
+       }
+
+      
+       countrySelect.addEventListener("change",setCities);
+       citySelect.addEventListener("change",displayInfo);
+      
+
+    </script>
+</body>
+
+</html>

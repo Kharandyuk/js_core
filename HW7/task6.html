@@ -1,0 +1,30 @@
+
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>seventh task</title>
+   
+</head>
+
+<body>
+    <div id = "dimensions">
+
+    </div>
+    <script>
+       window.onresize = displayWindowSize;
+       window.onload = displayWindowSize;
+
+    function displayWindowSize() {
+        myWidth = window.innerWidth;
+        myHeight = window.innerHeight;
+        // your size calculation code here
+        document.getElementById("dimensions").innerHTML = "Width: " + myWidth + ", Height: " + myHeight;
+    };
+    </script>
+</body>
+
+</html>

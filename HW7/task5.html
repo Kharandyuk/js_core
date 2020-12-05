@@ -1,0 +1,40 @@
+
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>seventh task</title>
+    
+</head>
+
+<body>
+    <button id="myBtn1">Live button!</button>
+<script>
+    let body = document.getElementsByTagName('body')[0];
+    function click () {
+       let elem = document.createElement('div');
+       elem.innerHTML = 'I was pressed!'
+       body.appendChild(elem);
+    }
+    function mouseOver () {
+       let elem = document.createElement('div');
+       elem.innerHTML = 'Mouse on me!'
+       body.appendChild(elem);
+    }
+    function mouseOut () {
+       let elem = document.createElement('div');
+       elem.innerHTML = 'Mouse is not on me!'
+       body.appendChild(elem);
+    }
+
+    let btn1 = document.getElementById("myBtn1");
+         btn1.addEventListener("click",click);
+         btn1.addEventListener("mouseover",mouseOver);
+         btn1.addEventListener("mouseout",mouseOut);
+</script> 
+</body>
+
+</html>

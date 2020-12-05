@@ -1,0 +1,48 @@
+
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>seventh task</title>
+    
+</head>
+
+<body>
+<button id="myBtn1">Click to make the page blue.</button>
+<button id="myBtn2">Double-click to make the page pink.</button>
+<button id="myBtn3">Click and hold to make the page brown.</button>   
+<a href="myURL">Hover over to make page yellow.</a>      
+<script>
+    function makeBlue () {
+        document.getElementsByTagName('body')[0].style.backgroundColor = "blue";
+    }
+    function makePink () {
+        document.getElementsByTagName('body')[0].style.backgroundColor = "pink";
+    }
+    function makeBrown () {
+        document.getElementsByTagName('body')[0].style.backgroundColor = "brown";
+    }
+    function makeWhite () {
+        document.getElementsByTagName('body')[0].style.backgroundColor = "white";
+    }
+    function makeYellow () {
+        document.getElementsByTagName('body')[0].style.backgroundColor = "yellow";
+    }
+
+    let btn1 = document.getElementById("myBtn1");
+         btn1.addEventListener("click",makeBlue);
+    let btn2 = document.getElementById("myBtn2");
+         btn2.addEventListener("dblclick",makePink);
+    let btn3 = document.getElementById("myBtn3");
+        btn3.addEventListener("mousedown",makeBrown);
+        btn3.addEventListener("mouseup",makeWhite);
+    let url = document.getElementsByTagName('a')[0];
+        url.addEventListener("mouseover",makeYellow);
+        url.addEventListener("mouseout",makeWhite);
+</script> 
+</body>
+
+</html>
