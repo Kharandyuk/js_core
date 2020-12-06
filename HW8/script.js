@@ -10,8 +10,50 @@ upperCase('RegExp');
 
 //T2
 function checkEmail (str){
-   let result = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(str);
+   result = /\S+@\S+\.\S+/.test(str); 
    console.log(result);
 }
-checkEmail("Qmail2@gmail.com")
+checkEmail("Qmail-2@gmail.com")
 checkEmail("@gmail.com")
+
+
+
+//T5
+
+function swapString (str){
+
+   let result = str.match(/\s(.*)/)[0] +  ", " + str.match(/^(\S+)/)[0];
+   //let result =  str.match(/\s(.*)/).slice(1);
+   console.log(result);
+}
+
+swapString ("Java Script");
+
+//T6
+function is_creditCard(str)
+{
+   str = str.replace(/-/g, '');
+   
+   regexp = /^[0-9]{16}$/;
+   return regexp.test(str);
+  
+          
+}
+console.log(is_creditCard("9999-9999-9999-9999"))
+
+
+//T7
+
+function checkFullEmail (str){
+   //let body = str.match(/^[\w-\.]@/)[0];
+   //let result = /^[^-_][\w-]+@\w+\.\w+$/.test(str);
+   //let reg = new RegExp('^[^-_]([\w]+[-]{1})*[\w]+@\w+\.\w+$');
+   let result = /^[^-_]([\w]+[-]{1})*[\w]+@\w+\.\w+$/.test(str);
+
+   console.log(result);
+}
+
+checkFullEmail("tt@gmail.com")
+checkFullEmail("t--t@gmail.com")
+checkFullEmail("-t@gmail.com")
+checkFullEmail("_test@gmail.com")
