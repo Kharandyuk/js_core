@@ -1,5 +1,5 @@
 //T1
-let newWindow = window.open("file:///E:/js_core/HW7/index.html", "test", "width=300,height=300");
+let newWindow = window.open("", "test", "width=300,height=300");
 
 setTimeout('newWindow.resizeTo(500,500)', 2000);
 setTimeout('newWindow.resizeTo(200,200)', 4000);
