@@ -54,7 +54,11 @@ function allowDrop(ev) {
 }
 function addCard() {
     console.log("lets add a card");
-    
+    //.insertAdjacentHTML citySelect.insertAdjacentHTML('beforeend', `
+    //<option value="BL">Berlin</option>
+    //<option value="FT">Frankfurt</option>
+    //<option value="MN">Munich</option>
+   //`);  
   }
 let addElement = document.getElementById("add");
 addElement.addEventListener("click",addCard);

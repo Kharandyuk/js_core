@@ -16,9 +16,19 @@ function checkEmail (str){
 checkEmail("Qmail-2@gmail.com")
 checkEmail("@gmail.com")
 
+//T3
+function findChar (str){
+   let tmp = str.match(/db+d/ig)[0];
+   let result = tmp.match(/b+/ig);
+   console.log(result.join(', '));
+}
+
+findChar("cdbBdbsbz")
 
 
-//T5
+
+
+//T4
 
 function swapString (str){
 
@@ -29,7 +39,7 @@ function swapString (str){
 
 swapString ("Java Script");
 
-//T6
+//T5
 function is_creditCard(str)
 {
    str = str.replace(/-/g, '');
@@ -42,7 +52,7 @@ function is_creditCard(str)
 console.log(is_creditCard("9999-9999-9999-9999"))
 
 
-//T7
+//T6
 
 function checkFullEmail (str){
    //let body = str.match(/^[\w-\.]@/)[0];
@@ -57,3 +67,15 @@ checkFullEmail("tt@gmail.com")
 checkFullEmail("t--t@gmail.com")
 checkFullEmail("-t@gmail.com")
 checkFullEmail("_test@gmail.com")
+
+//T7 
+function checkLogin(str){
+   let result = /^([A-Za-z0-9+\.]){2,10}$/.test(str);
+   
+   let numArray = str.match(/[0-9+\.]{1,10}/g);
+   console.log(result);
+   console.log(numArray.join(', '));
+  
+}
+
+checkLogin('ee1.1ret3');
