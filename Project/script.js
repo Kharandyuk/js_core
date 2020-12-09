@@ -52,13 +52,48 @@ function allowDrop(ev) {
     }
     
 }
+function openCard() {
+    
+    //console.log(currentCard.trim());
+   
+    modalMsg.innerHTML = this.innerHTML;
+    modal.style.display = "block";
+
+}
 function addCard() {
-    console.log("lets add a card");
-    //.insertAdjacentHTML citySelect.insertAdjacentHTML('beforeend', `
-    //<option value="BL">Berlin</option>
-    //<option value="FT">Frankfurt</option>
-    //<option value="MN">Munich</option>
-   //`);  
+    //console.log("lets add a card");
+     addElement.insertAdjacentHTML('beforebegin', `
+     <div id='newCard' class="card" draggable="true" ondragstart="dragStart(event)">
+     type description here
+     </div>
+   `);  
+   init();
   }
+function init() {
+    
+}
+////
+var modal = document.getElementById("myModal");
+    var span = document.getElementsByClassName("close")[0];
+    span.onclick = function() {
+    modal.style.display = "none";
+    }
+
+window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+/////
+let modalMsg = document.getElementById("modalMsg")
 let addElement = document.getElementById("add");
+function init(){
+let cards = document.getElementsByClassName("card");
+for(let i=0; i < cards.length; i++ ){
+    cards[i].addEventListener("click",openCard);
+}
+
+}
 addElement.addEventListener("click",addCard);
+init();

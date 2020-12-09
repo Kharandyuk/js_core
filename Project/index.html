@@ -9,6 +9,13 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p id="modalMsg"></p>
+        </div>
+    </div>
     <div class="board-layout">
    
         <div class="left">
@@ -37,7 +44,7 @@
             <div id='card5' class="card" draggable="true" ondragstart="dragStart(event)">
             Debug SQL code
             </div>
-            <div id='add' class="card" draggable="false" >
+            <div id='add' class="addcard" draggable="false" >
                 add a card
                 </div>
         </div>
