@@ -18,8 +18,8 @@ checkEmail("@gmail.com")
 
 //T3
 function findChar (str){
-   let tmp = str.match(/db+d/ig)[0];
-   let result = tmp.match(/b+/ig);
+   let reg = new RegExp("d(b+)(d)", "ig");
+   let result = reg.exec(str);
    console.log(result.join(', '));
 }
 
@@ -55,9 +55,7 @@ console.log(is_creditCard("9999-9999-9999-9999"))
 //T6
 
 function checkFullEmail (str){
-   //let body = str.match(/^[\w-\.]@/)[0];
-   //let result = /^[^-_][\w-]+@\w+\.\w+$/.test(str);
-   //let reg = new RegExp('^[^-_]([\w]+[-]{1})*[\w]+@\w+\.\w+$');
+   
    let result = /^[^-_]([\w]+[-]{1})*[\w]+@\w+\.\w+$/.test(str);
 
    console.log(result);
