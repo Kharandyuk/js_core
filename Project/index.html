@@ -13,8 +13,13 @@
         <!-- Modal content -->
         <div class="modal-content">
           <span class="close">&times;</span>
-          <p id="modalMsg"></p>
+          <p class="modalMsgHeader" id="modalMsg"></p>
+          <p class="modalMsgBody" id="modalBody"></p>
+          </br>
+          <input type="text" id="age" placeholder="Write a comment..."> 
+          <button id="addComment">Add</button>
         </div>
+         
     </div>
     <div class="board-layout">
    
@@ -26,7 +31,7 @@
       <div id='boardlists' class="board-lists">
         <div id='list1' class="board-list" ondrop="dropIt(event)" ondragover="allowDrop(event)">
           <div id='list1'class="list-title">
-            To Do
+            Backlog
           </div>
           
             <div  id='card1' class="card" draggable="true" ondragstart="dragStart(event)">
@@ -50,12 +55,26 @@
         </div>
         <div  id='list2' class="board-list" ondrop="dropIt(event)" ondragover="allowDrop(event)">
           <div  class="list-title">
+            To Do
+          </div>
+          
+          
+        </div>
+        <div  id='list3' class="board-list" ondrop="dropIt(event)" ondragover="allowDrop(event)">
+          <div  class="list-title">
           In Progress
           </div>
           
           
         </div>
-        <div  id='list3' class="board-list"  ondrop="dropIt(event)" ondragover="allowDrop(event)">
+        <div  id='list4' class="board-list" ondrop="dropIt(event)" ondragover="allowDrop(event)">
+          <div  class="list-title">
+          In Testing
+          </div>
+          
+          
+        </div>
+        <div  id='list5' class="board-list"  ondrop="dropIt(event)" ondragover="allowDrop(event)">
           <div  class="list-title">
             Done
             </div>

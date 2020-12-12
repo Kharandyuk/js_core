@@ -1,13 +1,13 @@
 function allowDrop(ev) {
     ev.preventDefault();  // default is not to allow drop
   }
-  function dragStart(ev) {
+function dragStart(ev) {
     // The 'text/plain' is referring the Data Type (DOMString) 
     // of the Object being dragged.
     // ev.target.id is the id of the Object being dragged
     ev.dataTransfer.setData("text/plain", ev.target.id);
   }
-  function dropIt(ev) {
+function dropIt(ev) {
     ev.preventDefault();  // default is not to allow drop
     let sourceId = ev.dataTransfer.getData("text/plain");
     let sourceIdEl=document.getElementById(sourceId);
@@ -62,7 +62,7 @@ function openCard() {
 }
 function addCard() {
     //console.log("lets add a card");
-     addElement.insertAdjacentHTML('beforebegin', `
+     this.insertAdjacentHTML('beforebegin', `
      <div id='newCard' class="card" draggable="true" ondragstart="dragStart(event)">
      type description here
      </div>
