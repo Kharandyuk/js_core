@@ -2,9 +2,7 @@ function allowDrop(ev) {
     ev.preventDefault();  // default is not to allow drop
   }
 function dragStart(ev) {
-    // The 'text/plain' is referring the Data Type (DOMString) 
-    // of the Object being dragged.
-    // ev.target.id is the id of the Object being dragged
+   
     ev.dataTransfer.setData("text/plain", ev.target.id);
   }
 function dropIt(ev) {
@@ -16,37 +14,27 @@ function dropIt(ev) {
     let targetEl=document.getElementById(ev.target.id)
     let targetParentEl=targetEl.parentElement;
   
-    // Compare List names to see if we are going between lists
-    // or within the same list
+   
     if (targetParentEl.id!==sourceIdParentEl.id){
-// If the source and destination have the same 
-        // className (card), then we risk dropping a Card in to a Card
-        // That may be a cool feature, but not for us!
+
         if (targetEl.className === sourceIdEl.className ){
-          // Append to parent Object (list), not to a 
-          // Card in the list
-          // This is in case you drag and drop a Card on top 
-          // of a Card in a different list
+          
            targetParentEl.appendChild(sourceIdEl);
          
         }else{
-            // Append to the list
+            
              targetEl.appendChild(sourceIdEl);
            
         }
        
     }else{
-        // Same list. Swap the text of the two cards
-        // Just like swapping the values in two variables
-      
-        // Temporary holder of the destination Object
+        
         let holder=targetEl;
-        // The text of the destination Object. 
-        // We are really just moving the text, not the Card
+        
         let holderText=holder.textContent;
-        // Replace the destination Objects text with the sources text
+        
         targetEl.textContent=sourceIdEl.textContent;
-        // Replace the sources text with the original destinations
+       
         sourceIdEl.textContent=holderText;
         holderText='';
     }
@@ -56,22 +44,69 @@ function openCard() {
     
     //console.log(currentCard.trim());
    
-    modalMsg.innerHTML = this.innerHTML;
+    modalMsg.innerHTML = this.querySelector("h3").innerHTML;
+    modalBody.innerHTML = this.querySelector("p").innerHTML;
     modal.style.display = "block";
+    currentCardId = this.id;
 
 }
 function addCard() {
     //console.log("lets add a card");
-     this.insertAdjacentHTML('beforebegin', `
-     <div id='newCard' class="card" draggable="true" ondragstart="dragStart(event)">
-     type description here
-     </div>
-   `);  
+    this.querySelector("input").setAttribute('type','text');
+    this.querySelector("button").style.display ='block';
+    this.querySelector("img").style.display ='none';
+    this.querySelector("button").addEventListener("click",addConent);
+    
+//      this.insertAdjacentHTML('beforebegin', `
+//      <div id='newCard' class="card" draggable="true" ondragstart="dragStart(event)">
+//      type description here
+//      </div>
+//    `);  
    init();
   }
-function init() {
+function addConent() {
+   
+    this.parentNode.insertAdjacentHTML('beforebegin', `
+      <div id='` + (lastCardId+1) + `' class="card" draggable="true" ondragstart="dragStart(event)"><h3>`+ this.parentNode.querySelector("input").value +
+      
+      ` </h3><p class="cardContent" style="display: none;">hidden text</p>
+      </div>
+    `); 
     
-}
+    this.parentNode.insertAdjacentHTML('beforebegin', `
+        <div id='add' class="addcard" draggable="false" >
+    
+        <img class="icon" id="icon" style="display: inline;" src="img/cross.png">
+        <input type="hidden" class="input" id="input" placeholder="Write a title for your card..." > 
+        <button class="addbutton" id="addbutton" style="display: none;">Add</button>
+    </div>
+    `); 
+    this.parentNode.outerHTML = "";
+    init();
+   
+  }
+  function addComment(){
+
+    
+    document.querySelector("#modalBody").insertAdjacentHTML('beforeend', `
+    <p >`+ this.parentNode.querySelector("#cardContentInput").value +
+    
+    ` </p>
+    `); 
+    document.getElementById(currentCardId).querySelector("p").insertAdjacentHTML('beforeend', `
+    <p >`+ this.parentNode.querySelector("#cardContentInput").value +
+    
+    ` </p>
+    `); 
+    this.parentNode.querySelector("#cardContentInput").value = "";
+  }
+
+
+  function removeCard() {
+    document.getElementById(currentCardId).outerHTML = "";
+    modal.style.display = "none";
+  }
+  
 ////
 var modal = document.getElementById("myModal");
     var span = document.getElementsByClassName("close")[0];
@@ -86,14 +121,33 @@ window.onclick = function(event) {
     }
 
 /////
-let modalMsg = document.getElementById("modalMsg")
-let addElement = document.getElementById("add");
+let modalMsg = document.getElementById("modalMsg");
+let modalBody = document.getElementById("modalBody");
+let currentCardId ;
+let lastCardId = 0;
+
 function init(){
-let cards = document.getElementsByClassName("card");
-for(let i=0; i < cards.length; i++ ){
-    cards[i].addEventListener("click",openCard);
+    let addElement = document.getElementById("add");
+    let cards = document.getElementsByClassName("card");
+    let recycleBin = document.getElementById("trash");
+    let addCommentButton = document.getElementById("addComment");
+    for(let i=0; i < cards.length; i++ ){
+        cards[i].addEventListener("click",openCard);
+    }
+    addElement.addEventListener("click",addCard);
+    recycleBin.addEventListener("click",removeCard);
+
+    addCommentButton.addEventListener("click",addComment);
+    allCards = document.querySelectorAll("div.card");
+    
+    for(let i= 0; i<allCards.length; i++){
+     if(Number(allCards[i].id) > lastCardId){
+            lastCardId = Number(allCards[i].id);
+        }
+
+    }
+    
+   
 }
 
-}
-addElement.addEventListener("click",addCard);
 init();

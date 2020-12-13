@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-  <title>Trello-Like</title>
+  <title>Taskboard</title>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
@@ -13,11 +13,16 @@
         <!-- Modal content -->
         <div class="modal-content">
           <span class="close">&times;</span>
+          <img class="recycleBin" id = "trash" src="img/recycle-bin.png">
           <p class="modalMsgHeader" id="modalMsg"></p>
           <p class="modalMsgBody" id="modalBody"></p>
           </br>
-          <input type="text" id="age" placeholder="Write a comment..."> 
-          <button id="addComment">Add</button>
+          
+
+          <div class="textarea-container">
+            <textarea type="text" id="cardContentInput" placeholder="Write a comment..."></textarea>
+            <button class="addCommentButton"id="addComment">Add</button>
+          </div>
         </div>
          
     </div>
@@ -34,24 +39,34 @@
             Backlog
           </div>
           
-            <div  id='card1' class="card" draggable="true" ondragstart="dragStart(event)">
-            Work on article
+           
+            <div  id='2' class="card" draggable="true" ondragstart="dragStart(event)">
+              <h3>Back up database</h3>
+              <p class="cardContent" style="display: none;"></p>
+
             </div>
-            <div  id='card2' class="card" draggable="true" ondragstart="dragStart(event)">
-            Back up database
+            <div  id='1' class="card" draggable="true" ondragstart="dragStart(event)">
+              <h3>Work on article</h3>
+              <p class="cardContent" style="display: none;"></p>
             </div>
-            <div id='card3' class="card" draggable="true" ondragstart="dragStart(event)">
-            Build Lambda function
+            <div id='3' class="card" draggable="true" ondragstart="dragStart(event)">
+            <h3>Build Lambda function</h3>
+            <p class="cardContent" style="display: none;"></p>
             </div>
-            <div id='card4' class="card" draggable="true" ondragstart="dragStart(event)">
-            Work on course content
+            <div id='4' class="card" draggable="true" ondragstart="dragStart(event)">
+            <h3>Work on course content</h3>
+            <p class="cardContent" style="display: none;"></p>
             </div>
-            <div id='card5' class="card" draggable="true" ondragstart="dragStart(event)">
-            Debug SQL code
+            <div id='5' class="card" draggable="true" ondragstart="dragStart(event)">
+            <h3>Debug SQL code</h3>
+            <p class="cardContent" style="display: none;"></p>
             </div>
             <div id='add' class="addcard" draggable="false" >
-                add a card
-                </div>
+           
+              <img class="icon" id="icon" style="display: inline;" src="img/cross.png">
+              <input type="hidden" class="input" id="input" placeholder="Write a title for your card..." > 
+              <button class="addbutton" id="addbutton" style="display: none;">Add</button>
+            </div>
         </div>
         <div  id='list2' class="board-list" ondrop="dropIt(event)" ondragover="allowDrop(event)">
           <div  class="list-title">
