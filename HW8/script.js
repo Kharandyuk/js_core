@@ -68,7 +68,7 @@ checkFullEmail("_test@gmail.com")
 
 //T7 
 function checkLogin(str){
-   let result = /^([A-Za-z0-9+\.]){2,10}$/.test(str);
+   let result = /^[^0-9]([A-Za-z0-9+\.]){2,10}$/.test(str);
    
    let numArray = str.match(/[0-9+\.]{1,10}/g);
    console.log(result);
@@ -77,3 +77,4 @@ function checkLogin(str){
 }
 
 checkLogin('ee1.1ret3');
+checkLogin('1ee.1ret3');
