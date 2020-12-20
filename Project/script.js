@@ -12,31 +12,45 @@ function dropIt(ev) {
     let sourceIdParentEl=sourceIdEl.parentElement;
     // ev.target.id here is the id of target Object of the drop
     let targetEl=document.getElementById(ev.target.id)
+    if(targetEl.className ==="cardHeader"){
+        targetEl = targetEl.parentElement
+    }
     let targetParentEl=targetEl.parentElement;
-  
+    
    
     if (targetParentEl.id!==sourceIdParentEl.id){
 
-        if (targetEl.className === sourceIdEl.className ){
-          
-           targetParentEl.appendChild(sourceIdEl);
+        if ((targetEl.className === sourceIdEl.className)||(targetEl.className ==="addcard") ){
+            
+            targetParentEl.appendChild(sourceIdEl);
+            initAddCard();
+            
          
         }else{
             
              targetEl.appendChild(sourceIdEl);
+             initAddCard();
            
         }
        
     }else{
-        
+        if((targetEl.className !="addcard")){
+        // Same list.
         let holder=targetEl;
         
-        let holderText=holder.textContent;
+        let holderText=holder.innerHTML;
         
-        targetEl.textContent=sourceIdEl.textContent;
+        targetEl.innerHTML=sourceIdEl.innerHTML;
        
-        sourceIdEl.textContent=holderText;
-        holderText='';
+        sourceIdEl.innerHTML=holderText;
+        holderText="";
+
+        }else{
+            console.log("we can't play with add card");
+            //initAddCard();
+        }
+        
+
     }
     
 }
@@ -65,32 +79,26 @@ function addCard() {
    init();
   }
 function addConent() {
-   
+   if(this.parentNode.querySelector("input").value != ""){
     this.parentNode.insertAdjacentHTML('beforebegin', `
-      <div id='${lastCardId+1}' class="card" draggable="true" ondragstart="dragStart(event)"><h3>${this.parentNode.querySelector("input").value}</h3><p class="cardContent" style="display: none;">h</p>
+      <div id='${lastCardId+1}' class="card" draggable="true" ondragstart="dragStart(event)"><h3 id='${lastCardId+1}'class="cardHeader">${this.parentNode.querySelector("input").value}</h3><p class="cardContent" style="display: none;"></p>
       </div>
     `); 
     
-    this.parentNode.insertAdjacentHTML('beforebegin', `
-        <div id='add' class="addcard" draggable="false" >
-    
-        <img class="icon" id="icon" style="display: inline;" src="img/cross.png">
-        <input type="hidden" class="input" id="input" placeholder="Write a title for your card..." > 
-        <button class="addbutton" id="addbutton" style="display: none;">Add</button>
-    </div>
-    `); 
-    this.parentNode.outerHTML = "";
-    init();
-   
+    initAddCard();
+    }else {
+        initAddCard(); 
+    }
   }
+
   function addComment(){
 
     
     document.querySelector("#modalBody").insertAdjacentHTML('beforeend', `
-    <p >${this.parentNode.querySelector("#cardContentInput").value}</p>
+    <pre>${new Date(Date.now()).toLocaleString()} : ${this.parentNode.querySelector("#cardContentInput").value}</pre>
     `); 
     document.getElementById(currentCardId).querySelector("p").insertAdjacentHTML('beforeend', `
-    <p >${this.parentNode.querySelector("#cardContentInput").value}</p>
+    <pre>${new Date(Date.now()).toLocaleString()} : ${this.parentNode.querySelector("#cardContentInput").value}</pre>
     `); 
     this.parentNode.querySelector("#cardContentInput").value = "";
   }
@@ -100,6 +108,22 @@ function addConent() {
     document.getElementById(currentCardId).outerHTML = "";
     modal.style.display = "none";
   }
+  function initAddCard(){
+        //console.log("addCard has been initialized");
+        document.getElementById("add").outerHTML = "";
+        document.getElementById("list1").insertAdjacentHTML('beforeend', `
+        <div id='add' class="addcard" draggable="false" >
+
+        <img class="icon" id="icon" style="display: inline;" src="img/cross.png">
+        <input type="hidden" class="input" id="input" placeholder="Write a title for your card..." > 
+        <button class="addbutton" id="addbutton" style="display: none;">Add</button>
+    </div>
+    `); 
+    init();
+  }
+saveToLocalStorage(){
+    
+}
   
 ////
 var modal = document.getElementById("myModal");
@@ -113,6 +137,7 @@ window.onclick = function(event) {
             modal.style.display = "none";
         }
     }
+
 
 /////
 let modalMsg = document.getElementById("modalMsg");
