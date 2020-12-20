@@ -67,9 +67,7 @@ function addCard() {
 function addConent() {
    
     this.parentNode.insertAdjacentHTML('beforebegin', `
-      <div id='` + (lastCardId+1) + `' class="card" draggable="true" ondragstart="dragStart(event)"><h3>`+ this.parentNode.querySelector("input").value +
-      
-      ` </h3><p class="cardContent" style="display: none;">hidden text</p>
+      <div id='${lastCardId+1}' class="card" draggable="true" ondragstart="dragStart(event)"><h3>${this.parentNode.querySelector("input").value}</h3><p class="cardContent" style="display: none;">h</p>
       </div>
     `); 
     
@@ -89,14 +87,10 @@ function addConent() {
 
     
     document.querySelector("#modalBody").insertAdjacentHTML('beforeend', `
-    <p >`+ this.parentNode.querySelector("#cardContentInput").value +
-    
-    ` </p>
+    <p >${this.parentNode.querySelector("#cardContentInput").value}</p>
     `); 
     document.getElementById(currentCardId).querySelector("p").insertAdjacentHTML('beforeend', `
-    <p >`+ this.parentNode.querySelector("#cardContentInput").value +
-    
-    ` </p>
+    <p >${this.parentNode.querySelector("#cardContentInput").value}</p>
     `); 
     this.parentNode.querySelector("#cardContentInput").value = "";
   }
