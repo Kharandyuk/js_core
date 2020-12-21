@@ -52,14 +52,14 @@ function dropIt(ev) {
         
 
     }
-    
+    saveToLocalStorage(); 
 }
 function openCard() {
     
     //console.log(currentCard.trim());
    
     modalMsg.innerHTML = this.querySelector("h3").innerHTML;
-    modalBody.innerHTML = this.querySelector("p").innerHTML;
+    modalBody.innerHTML = this.querySelector("div.cardContent").innerHTML;
     modal.style.display = "block";
     currentCardId = this.id;
 
@@ -77,11 +77,12 @@ function addCard() {
 //      </div>
 //    `);  
    init();
+   saveToLocalStorage();
   }
 function addConent() {
    if(this.parentNode.querySelector("input").value != ""){
     this.parentNode.insertAdjacentHTML('beforebegin', `
-      <div id='${lastCardId+1}' class="card" draggable="true" ondragstart="dragStart(event)"><h3 id='${lastCardId+1}'class="cardHeader">${this.parentNode.querySelector("input").value}</h3><p class="cardContent" style="display: none;"></p>
+      <div id='${lastCardId+1}' class="card" draggable="true" ondragstart="dragStart(event)"><h3 id='${lastCardId+1}'class="cardHeader">${this.parentNode.querySelector("input").value}</h3><div class="cardContent" style="display: none;"></div>
       </div>
     `); 
     
@@ -89,24 +90,23 @@ function addConent() {
     }else {
         initAddCard(); 
     }
+    saveToLocalStorage();
   }
 
   function addComment(){
 
     
-    document.querySelector("#modalBody").insertAdjacentHTML('beforeend', `
-    <pre>${new Date(Date.now()).toLocaleString()} : ${this.parentNode.querySelector("#cardContentInput").value}</pre>
-    `); 
-    document.getElementById(currentCardId).querySelector("p").insertAdjacentHTML('beforeend', `
-    <pre>${new Date(Date.now()).toLocaleString()} : ${this.parentNode.querySelector("#cardContentInput").value}</pre>
-    `); 
+    document.querySelector("#modalBody").insertAdjacentHTML('beforeend', `<div>${new Date(Date.now()).toLocaleString()} : ${this.parentNode.querySelector("#cardContentInput").value}</div>`); 
+    document.getElementById(currentCardId).querySelector("div.cardContent").insertAdjacentHTML('beforeend', `<pre>${new Date(Date.now()).toLocaleString()} : ${this.parentNode.querySelector("#cardContentInput").value}</pre>`); 
     this.parentNode.querySelector("#cardContentInput").value = "";
+    saveToLocalStorage();
   }
 
 
   function removeCard() {
     document.getElementById(currentCardId).outerHTML = "";
     modal.style.display = "none";
+    saveToLocalStorage();
   }
   function initAddCard(){
         //console.log("addCard has been initialized");
@@ -121,8 +121,61 @@ function addConent() {
     `); 
     init();
   }
-saveToLocalStorage(){
-    
+
+function saveToLocalStorage(){
+   
+
+    let list1 =  window.btoa($("#list1").html()); 
+    let list2 =  window.btoa($("#list2").html());
+    let list3 =  window.btoa($("#list3").html());
+    let list4 =  window.btoa($("#list4").html());
+    let list5 =  window.btoa($("#list5").html());
+      
+      
+      localStorage.setItem("list1", list1);
+      localStorage.setItem("list2", list2);
+      localStorage.setItem("list3", list3);
+      localStorage.setItem("list4", list4);
+      localStorage.setItem("list5", list5);
+
+     //let clone = window.atob(localStorage.getItem("list1"));
+     //document.getElementById("list3").innerHTML = "";
+      //  document.getElementById("list3").insertAdjacentHTML('beforeend', `${clone}`);
+}
+
+function uploadFromLocalStorage(){
+    let localList1 = localStorage.getItem("list1");
+    let localList2 = localStorage.getItem("list2");
+    let localList3 = localStorage.getItem("list3");
+    let localList4 = localStorage.getItem("list4");
+    let localList5 = localStorage.getItem("list5");
+    //console.log(localList2);
+
+    if(localList1){
+        document.getElementById("list1").innerHTML = "";
+        document.getElementById("list1").insertAdjacentHTML('beforeend', `${window.atob(localList1)}`);
+    }
+
+     if(localList2){
+        document.getElementById("list2").innerHTML = "";
+         document.getElementById("list2").insertAdjacentHTML('beforeend', `${window.atob(localList2)}`);
+     }
+
+    if(localList3){
+        document.getElementById("list3").innerHTML = "";
+        document.getElementById("list3").insertAdjacentHTML('beforeend', `${window.atob(localList3)}`);
+    }
+
+    if(localList4){
+        document.getElementById("list4").innerHTML = "";
+        document.getElementById("list4").insertAdjacentHTML('beforeend', `${window.atob(localList4)}`);
+    }
+
+    if(localList5){
+        document.getElementById("list5").innerHTML = "";
+        document.getElementById("list5").insertAdjacentHTML('beforeend', `${window.atob(localList5)}`);
+    }
+    init();
 }
   
 ////
@@ -166,7 +219,8 @@ function init(){
 
     }
     
-   
+  // 
 }
 
 init();
+window.addEventListener("DOMContentLoaded", uploadFromLocalStorage);
