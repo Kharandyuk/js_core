@@ -49,14 +49,19 @@
 }
 .card {
   background-color: white;
+  border: 1px solid rgb(153, 147, 147);;
   border-radius: 3px;
+  
   box-shadow: 0 1px 0 rgba(9,30,66,.25);
-  padding: 10px;
+  padding: 5px;
   cursor:pointer;
+  
 }
 .addcard {
   background-color: white;
   border-radius: 3px;
+  border: 1px solid rgb(153, 147, 147);;
+  border-radius: 3p
   box-shadow: 0 1px 0 rgba(9,30,66,.25);
   padding: 10px;
   cursor:pointer;
@@ -146,6 +151,13 @@ body {
   text-decoration: none;
   cursor: pointer;
 }
+.assignedModal {
+  color: #3a3838;
+  float: cenetr;
+  font-size: 14px;
+  font-weight: bold;
+  min-height: 20px; 
+}
 .icon{
   width: 30px; 
   height: 30px; 
@@ -172,4 +184,17 @@ body {
   position: absolute;
   top: 0;
   right: 0;
+}
+.assignedTo{
+  height: 22px;
+  width: 22px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  font-weight: bold;
+  font-size:18px;
+  margin-left:auto;
+  margin-right:0;
+  text-align: center;
+  vertical-align: middle; 
 }

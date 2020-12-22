@@ -1,3 +1,6 @@
+
+
+
 function allowDrop(ev) {
     ev.preventDefault();  // default is not to allow drop
   }
@@ -58,8 +61,9 @@ function openCard() {
     
     //console.log(currentCard.trim());
    
-    modalMsg.innerHTML = this.querySelector("h3").innerHTML;
-    modalBody.innerHTML = this.querySelector("div.cardContent").innerHTML;
+    modalMsg.innerHTML           = this.querySelector("h3").innerHTML;
+    modalBody.innerHTML          = this.querySelector("div.cardContent").innerHTML;
+    modalAssignedTo.innerHTML    = this.querySelector("div.assignedTo").innerHTML;
     modal.style.display = "block";
     currentCardId = this.id;
 
@@ -81,8 +85,11 @@ function addCard() {
   }
 function addConent() {
    if(this.parentNode.querySelector("input").value != ""){
+
+    
+
     this.parentNode.insertAdjacentHTML('beforebegin', `
-      <div id='${lastCardId+1}' class="card" draggable="true" ondragstart="dragStart(event)"><h3 id='${lastCardId+1}'class="cardHeader">${this.parentNode.querySelector("input").value}</h3><div class="cardContent" style="display: none;"></div>
+      <div id='${lastCardId+1}' class="card" draggable="true" ondragstart="dragStart(event)"><h3 id='${lastCardId+1}'class="cardHeader">${this.parentNode.querySelector("input").value}</h3><div class="cardContent" style="display: none;"></div><div class="assignedTo" style="display: none;"></div>
       </div>
     `); 
     
@@ -96,18 +103,31 @@ function addConent() {
   function addComment(){
 
     
-    document.querySelector("#modalBody").insertAdjacentHTML('beforeend', `<div>${new Date(Date.now()).toLocaleString()} : ${this.parentNode.querySelector("#cardContentInput").value}</div>`); 
+    document.querySelector("#modalBody").insertAdjacentHTML('beforeend', `<pre>${new Date(Date.now()).toLocaleString()} : ${this.parentNode.querySelector("#cardContentInput").value}</pre>`); 
     document.getElementById(currentCardId).querySelector("div.cardContent").insertAdjacentHTML('beforeend', `<pre>${new Date(Date.now()).toLocaleString()} : ${this.parentNode.querySelector("#cardContentInput").value}</pre>`); 
     this.parentNode.querySelector("#cardContentInput").value = "";
     saveToLocalStorage();
   }
 
+  function makeeditable (){
+    $this = $(this);
+    $this.attr('contenteditable', "true");
+    $this.blur();
+    $this.focus();
+   }
+   function makeNoteditable (){
+    $this = $(this);
+    $this.attr('contenteditable', "false");
+    console.log($this.text().trim());
+    document.getElementById(currentCardId).querySelector("div.assignedTo").innerHTML = $this.text().trim();
+   }
 
   function removeCard() {
     document.getElementById(currentCardId).outerHTML = "";
     modal.style.display = "none";
     saveToLocalStorage();
   }
+
   function initAddCard(){
         //console.log("addCard has been initialized");
         document.getElementById("add").outerHTML = "";
@@ -195,6 +215,7 @@ window.onclick = function(event) {
 /////
 let modalMsg = document.getElementById("modalMsg");
 let modalBody = document.getElementById("modalBody");
+let modalAssignedTo = document.getElementById("assignedModal");
 let currentCardId ;
 let lastCardId = 0;
 
@@ -203,12 +224,14 @@ function init(){
     let cards = document.getElementsByClassName("card");
     let recycleBin = document.getElementById("trash");
     let addCommentButton = document.getElementById("addComment");
+    let assignedToArea = document.getElementById("assignedModal");
     for(let i=0; i < cards.length; i++ ){
         cards[i].addEventListener("click",openCard);
     }
     addElement.addEventListener("click",addCard);
     recycleBin.addEventListener("click",removeCard);
-
+    assignedToArea.addEventListener("dblclick",makeeditable);
+    assignedToArea.addEventListener("blur",makeNoteditable);
     addCommentButton.addEventListener("click",addComment);
     allCards = document.querySelectorAll("div.card");
     

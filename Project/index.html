@@ -12,6 +12,7 @@
     <div id="myModal" class="modal">
         <!-- Modal content -->
         <div class="modal-content">
+          
           <span class="close">&times;</span>
           <img class="recycleBin" id = "trash" src="img/recycle-bin.png">
           <p class="modalMsgHeader" id="modalMsg"></p>
@@ -22,6 +23,9 @@
           <div class="textarea-container">
             <textarea type="text" id="cardContentInput" placeholder="Write a comment..."></textarea>
             <button class="addCommentButton"id="addComment">Add</button>
+          </div>
+          <div class="assignedModal" id="assignedModal" >
+            Yuriy
           </div>
         </div>
          
@@ -41,24 +45,29 @@
                     
             <div  id='2' class="card" draggable="true" ondragstart="dragStart(event)">
               <h3 id='2' class="cardHeader" draggable="false">Back up database</h3>
-              <div class="cardContent" style="display: none;"></div>
+              <div class="cardContent" ></div>
+              <div class="assignedTo" style="display: none;"></div>
 
             </div>
             <div  id='1' class="card" draggable="true" ondragstart="dragStart(event)">
               <h3 id='1' class="cardHeader" draggable="false">Work on article</h3>
               <div class="cardContent" style="display: none;"></div>
+              <div class="assignedTo" style="display: none;"></div>
             </div>
             <div id='3' class="card" draggable="true" ondragstart="dragStart(event)">
             <h3 id='3' class="cardHeader" draggable="false">Build Lambda function</h3>
             <div class="cardContent" style="display: none;"></div>
+            <div class="assignedTo" style="display: none;"></div>
             </div>
             <div id='4' class="card" draggable="true" ondragstart="dragStart(event)">
             <h3 id='4' class="cardHeader" draggable="false">Work on course content</h3>
             <div class="cardContent" style="display: none;"></div>
+            <div class="assignedTo" style="display: none;"></div>
             </div>
             <div id='5' class="card" draggable="true" ondragstart="dragStart(event)">
             <h3 id='5' class="cardHeader" draggable="false">Debug SQL code</h3>
             <div class="cardContent" style="display: none;"></div>
+            <div class="assignedTo" style="display: none;"></div>
             </div>
           
             <div id='add' class="addcard" >
