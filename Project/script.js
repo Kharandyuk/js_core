@@ -115,11 +115,17 @@ function addConent() {
     $this.blur();
     $this.focus();
    }
+   function makeNoteditableSave (){
+    $this = $(this);
+    $this.attr('contenteditable', "false");
+    //console.log($this.text().trim());
+    document.getElementById(currentCardId).querySelector("div.assignedTo").innerHTML = $this.text().trim();
+    
+   }
    function makeNoteditable (){
     $this = $(this);
     $this.attr('contenteditable', "false");
-    console.log($this.text().trim());
-    document.getElementById(currentCardId).querySelector("div.assignedTo").innerHTML = $this.text().trim();
+
    }
 
   function removeCard() {
@@ -202,15 +208,24 @@ function uploadFromLocalStorage(){
 var modal = document.getElementById("myModal");
     var span = document.getElementsByClassName("close")[0];
     span.onclick = function() {
-    modal.style.display = "none";
+    modalToCard();   
+    modal.style.display = "none"; 
     }
 
 window.onclick = function(event) {
         if (event.target == modal) {
+            modalToCard();
             modal.style.display = "none";
         }
     }
 
+function modalToCard() {
+    document.getElementById(currentCardId).querySelector("h3.cardHeader").innerHTML = modalMsg.innerHTML;
+
+    document.getElementById(currentCardId).querySelector("div.cardContent").innerHTML = modalBody.innerHTML;
+
+    document.getElementById(currentCardId).querySelector("div.assignedTo").innerHTML = modalAssignedTo.innerHTML.trim();
+}
 
 /////
 let modalMsg = document.getElementById("modalMsg");
@@ -222,16 +237,20 @@ let lastCardId = 0;
 function init(){
     let addElement = document.getElementById("add");
     let cards = document.getElementsByClassName("card");
+    let modalMessageHeader = document.getElementById("modalMsg");
     let recycleBin = document.getElementById("trash");
     let addCommentButton = document.getElementById("addComment");
     let assignedToArea = document.getElementById("assignedModal");
     for(let i=0; i < cards.length; i++ ){
         cards[i].addEventListener("click",openCard);
     }
+    
     addElement.addEventListener("click",addCard);
     recycleBin.addEventListener("click",removeCard);
     assignedToArea.addEventListener("dblclick",makeeditable);
-    assignedToArea.addEventListener("blur",makeNoteditable);
+    assignedToArea.addEventListener("blur", makeNoteditableSave);
+    modalMessageHeader.addEventListener("dblclick",makeeditable);
+    modalMessageHeader.addEventListener("blur",makeNoteditable);
     addCommentButton.addEventListener("click",addComment);
     allCards = document.querySelectorAll("div.card");
     
