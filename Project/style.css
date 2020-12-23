@@ -60,11 +60,11 @@
 .addcard {
   background-color: white;
   border-radius: 3px;
-  border: 1px solid rgb(153, 147, 147);;
-  border-radius: 3p
-  box-shadow: 0 1px 0 rgba(9,30,66,.25);
+  border: 1px solid rgb(153, 147, 147);
+  border-radius: 3p;
+  box-shadow: 1px 0 rgba(9,30,66,.25);
   padding: 10px;
-  cursor:pointer;
+  cursor: pointer;
   text-align: center;
 }
 .input{
@@ -73,7 +73,7 @@
   border-color: rgb(71, 71, 70);
   box-shadow: none;
   box-sizing: border-box;
-  color: rgba(10, 10, 10, 0.5).5);
+  color: rgba(10, 10, 10, 0.5);
   float: left;
   font-size: 13px;
   height: 32px;

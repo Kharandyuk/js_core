@@ -1,0 +1,41 @@
+
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>twelfth task</title>
+    
+</head>
+
+<body>
+   <button id="getBooksBtn">Download books!</button> 
+    
+    
+<script>
+    let btn = document.getElementById("getBooksBtn");
+    let body = document.getElementsByTagName('body')[0];
+    btn.addEventListener("click",getBooks);
+    function getBooks () {
+
+        fetch('http://127.0.0.1:8080/books.json', {
+            method: 'GET'
+        })
+          .then((response) => response.json())
+          .then((json) => { json.forEach(element => {
+            body.insertAdjacentHTML('beforeend', `<li>${element.author} </li>`)
+        });
+        btn.style.display = "none";
+                
+
+        });
+
+
+    }
+
+</script>
+</body>
+
+</html>

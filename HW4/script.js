@@ -7,7 +7,6 @@ function testThrow(exception) {
      } 
     
 }
-
 testThrow(5);
 testThrow('Test');
 testThrow(new Error('An error happened'));
