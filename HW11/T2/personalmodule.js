@@ -21,5 +21,5 @@ exports.customGreeting = function () {
 
 
 exports.myDateTime = function () {
-        return (new Date()).toString().replace(/\(.*$/g,''));
+        return (new Date()).toString().replace(/\(.*$/g,'');
   };
