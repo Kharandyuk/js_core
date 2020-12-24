@@ -243,7 +243,7 @@ function init(){
     let assignedToArea = document.getElementById("assignedModal");
     for(let i=0; i < cards.length; i++ ){
         cards[i].addEventListener("click",openCard);
-        console.log(cards[i] + "parent " + cards[i].parentElement.id);
+        
         switch (cards[i].parentElement.id){
 
         case "list1": cards[i].style.backgroundColor  = "lightblue";
