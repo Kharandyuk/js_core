@@ -243,6 +243,25 @@ function init(){
     let assignedToArea = document.getElementById("assignedModal");
     for(let i=0; i < cards.length; i++ ){
         cards[i].addEventListener("click",openCard);
+        console.log(cards[i] + "parent " + cards[i].parentElement.id);
+        switch (cards[i].parentElement.id){
+
+        case "list1": cards[i].style.backgroundColor  = "lightblue";
+        break ;
+        case "list2": cards[i].style.backgroundColor  = "lightgreen";
+        break ;
+        case "list3": cards[i].style.backgroundColor  = "DarkOrange";
+        break ;
+        case "list4": cards[i].style.backgroundColor  = "IndianRed";
+        break ;
+        case "list5": cards[i].style.backgroundColor  = "Gray";
+        break ;
+
+        default:
+            cards[i].style.backgroundColor  = "lightblue";
+        break;   
+        }
+    
     }
     
     addElement.addEventListener("click",addCard);
